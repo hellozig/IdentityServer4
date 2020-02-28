@@ -15,6 +15,7 @@ CREATE TABLE [ApiResources] (
     [Name] nvarchar(200) NOT NULL,
     [DisplayName] nvarchar(200) NULL,
     [Description] nvarchar(1000) NULL,
+    [AllowedAccessTokenSigningAlgorithms] nvarchar(100) NULL,
     [Created] datetime2 NOT NULL,
     [Updated] datetime2 NULL,
     [LastAccessed] datetime2 NULL,
@@ -39,6 +40,7 @@ CREATE TABLE [Clients] (
     [AlwaysIncludeUserClaimsInIdToken] bit NOT NULL,
     [RequirePkce] bit NOT NULL,
     [AllowPlainTextPkce] bit NOT NULL,
+    [RequireRequestObject] bit NOT NULL,
     [AllowAccessTokensViaBrowser] bit NOT NULL,
     [FrontChannelLogoutUri] nvarchar(2000) NULL,
     [FrontChannelLogoutSessionRequired] bit NOT NULL,
@@ -46,6 +48,7 @@ CREATE TABLE [Clients] (
     [BackChannelLogoutSessionRequired] bit NOT NULL,
     [AllowOfflineAccess] bit NOT NULL,
     [IdentityTokenLifetime] int NOT NULL,
+    [AllowedIdentityTokenSigningAlgorithms] nvarchar(100) NULL,
     [AccessTokenLifetime] int NOT NULL,
     [AuthorizationCodeLifetime] int NOT NULL,
     [ConsentLifetime] int NULL,
@@ -347,7 +350,7 @@ CREATE UNIQUE INDEX [IX_IdentityResources_Name] ON [IdentityResources] ([Name]);
 GO
 
 INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
-VALUES (N'20190906144232_Config', N'3.0.0-preview9.19423.6');
+VALUES (N'20200214163234_Config', N'3.1.0');
 
 GO
 
